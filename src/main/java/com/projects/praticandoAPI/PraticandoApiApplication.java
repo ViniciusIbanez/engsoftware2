@@ -23,7 +23,7 @@ public class PraticandoApiApplication  {
 	@ResponseBody
 	String home()
 	{
-		return "Teste3";
+		return "Test4";
 		}
 	
 	
