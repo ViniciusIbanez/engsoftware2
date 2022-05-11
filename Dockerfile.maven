@@ -1,0 +1,15 @@
+FROM openjdk:8-jre-slim
+FROM maven:alpine
+
+# image layer
+WORKDIR /praticandoAPI
+ADD pom.xml /praticandoAPI
+RUN mvn verify clean --fail-never
+
+# Image layer: with the application
+COPY . /praticandoAPI
+ RUN mvn -v
+RUN mvn clean install -DskipTests
+EXPOSE 8080
+COPY target/*.war /praticandoAPI/praticandoAPI-0.0.1-SNAPSHOT.war
+CMD java -XX:+UseContainerSupport -Xmx512m -jar praticandoAPI-0.0.1-SNAPSHOT.war
