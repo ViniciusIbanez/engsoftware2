@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.projects.praticandoAPI.controller.dto.TopicoDto;
 import com.projects.praticandoAPI.controller.dto.UsuarioDto;
-import com.projects.praticandoAPI.controller.form.TopicoForm;
 import com.projects.praticandoAPI.controller.form.UsuarioForm;
-import com.projects.praticandoAPI.modelo.Topico;
 import com.projects.praticandoAPI.modelo.Usuario;
 import com.projects.praticandoAPI.repository.UsuarioRepository;
 
