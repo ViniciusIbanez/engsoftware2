@@ -11,6 +11,7 @@ public class UsuarioDto {
 	private String nome;
 	private String email;
 	private String senha;
+	private String plano;
 	
 	
 	public UsuarioDto(Usuario usuario) {
@@ -19,6 +20,11 @@ public class UsuarioDto {
 		this.nome = usuario.getNome();
 		this.email = usuario.getEmail();
 		this.senha = usuario.getSenha();
+		this.plano = usuario.getPlano();
+	}
+
+	public String getPlano() {
+		return plano;
 	}
 
 	public Long getId() {

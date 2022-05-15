@@ -13,17 +13,33 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
-	
+	private String plano;
+
 	public Usuario() {
 	}
 
-	public Usuario(String nome, String email, String senha) {
+	/**
+	 * Cria um novo objeto de usuário com suas informações preenchidas
+	 * @param nome
+	 * @param email
+	 * @param senha
+	 * @param plano
+	 */
+	public Usuario(String nome, String email, String senha, String plano) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		if (
+			plano.toUpperCase() != "FREE" &&
+			plano.toUpperCase() != "PREMIUM" &&
+			plano.toUpperCase() != "VIP" 
+		){
+			plano = "FREE";
+		}
+		this.plano = plano;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -36,49 +52,64 @@ public class Usuario {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+			if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+			if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
-		if (id == null) {
-			if (other.id != null)
+			Usuario other = (Usuario) obj;
+			if (id == null) {
+				if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+			} else if (!id.equals(other.id))
 			return false;
-		return true;
-	}
+			return true;
+		}
 
-	public Long getId() {
-		return id;
-	}
+		public Long getId() {
+			return id;
+		}
+		
+		public void setId(Long id) {
+			this.id = id;
+		}
+		
+		public String getNome() {
+			return nome;
+		}
+		
+		public void setNome(String nome) {
+			this.nome = nome;
+		}
+		
+		public String getEmail() {
+			return email;
+		}
+		
+		public void setEmail(String email) {
+			this.email = email;
+		}
+		
+		public String getSenha() {
+			return senha;
+		}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
+		public String getPlano() {
+			return plano;
+		}
+		
+		public void setPlano(String plano) {
+			if (
+				plano.toUpperCase() != "FREE" &&
+				plano.toUpperCase() != "PREMIUM" &&
+				plano.toUpperCase() != "VIP" 
+			){
+				plano = "FREE";
+			}
+			this.plano = plano;
+		}
+		
+		public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	
 }

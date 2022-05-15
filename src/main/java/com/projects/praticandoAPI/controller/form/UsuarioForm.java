@@ -11,11 +11,27 @@ public class UsuarioForm {
 	private String nome;
 	private String email;
 	private String senha;
+	private String plano;
 	
 	public String getNome() {
 		return nome;
 	}
 	
+	public String getPlano() {
+		return plano;
+	}
+
+	public void setPlano(String plano) {
+		if (
+			plano.toUpperCase() != "FREE" &&
+			plano.toUpperCase() != "PREMIUM" &&
+			plano.toUpperCase() != "VIP" 
+		){
+			plano = "FREE";
+		}
+		this.plano = plano;
+	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -38,6 +54,6 @@ public class UsuarioForm {
 	
 	public Usuario converter(UsuarioRepository usuarioRepository) {
 		
-		return new Usuario(nome, email, senha);
+		return new Usuario(nome, email, senha, plano);
 	}
 }
