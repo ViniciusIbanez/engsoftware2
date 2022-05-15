@@ -12,6 +12,11 @@ public class UsuarioForm {
 	private String email;
 	private String senha;
 	private String plano;
+	private long moedas;
+
+	public long getMoedas(){
+		return this.moedas;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -22,14 +27,17 @@ public class UsuarioForm {
 	}
 
 	public void setPlano(String plano) {
-		if (
-			plano.toUpperCase() != "FREE" &&
-			plano.toUpperCase() != "PREMIUM" &&
-			plano.toUpperCase() != "VIP" 
-		){
-			plano = "FREE";
+		switch (plano.toUpperCase()) {
+			case "VIP":
+				this.plano = "VIP";
+				break;
+			case "PREMIUM":
+				this.plano = "PREMIUM";
+				break;
+			default:
+				this.plano = "FREE";
+				break;
 		}
-		this.plano = plano;
 	}
 
 	public void setNome(String nome) {
@@ -52,6 +60,10 @@ public class UsuarioForm {
 		this.senha = senha;
 	}
 	
+	public void setMoedas(long moedas){
+		this.moedas = moedas;
+	}
+
 	public Usuario converter(UsuarioRepository usuarioRepository) {
 		
 		return new Usuario(nome, email, senha, plano);

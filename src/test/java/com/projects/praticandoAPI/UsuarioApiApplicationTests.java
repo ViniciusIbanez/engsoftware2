@@ -29,13 +29,41 @@ public class UsuarioApiApplicationTests {
     private MockMvc mockMvc;
     
     @Test
-    public void testCreateUsuario() throws Exception{
+    public void testCreateUsuarioDefault() throws Exception{
         final String expectedEmail = "180131@facens.br";
         final String expectedNome = "Victor Thadeu Santos Marciano";
         final String expectedPlano = "FREE";
         final String expectedSenha = "1234";
         mockMvc
             .perform(MockMvcRequestBuilders.post("/usuarios").contentType(MediaType.APPLICATION_JSON).content("{\"email\":\"180131@facens.br\",\"nome\":\"Victor Thadeu Santos Marciano\",\"plano\":\"JUJUBA\",\"senha\":\"1234\"}"))
+            .andExpect(MockMvcResultMatchers.status().is(201))
+            .andExpect((ResultMatcher) jsonPath("email").value(expectedEmail))
+            .andExpect((ResultMatcher) jsonPath("nome").value(expectedNome))
+            .andExpect((ResultMatcher) jsonPath("plano").value(expectedPlano))
+            .andExpect((ResultMatcher) jsonPath("senha").value(expectedSenha));
+    }
+    @Test
+    public void testCreateUsuarioVIP() throws Exception{
+        final String expectedEmail = "180131@facens.br";
+        final String expectedNome = "Victor Thadeu Santos Marciano";
+        final String expectedPlano = "VIP";
+        final String expectedSenha = "1234";
+        mockMvc
+            .perform(MockMvcRequestBuilders.post("/usuarios").contentType(MediaType.APPLICATION_JSON).content("{\"email\":\"180131@facens.br\",\"nome\":\"Victor Thadeu Santos Marciano\",\"plano\":\"VIP\",\"senha\":\"1234\"}"))
+            .andExpect(MockMvcResultMatchers.status().is(201))
+            .andExpect((ResultMatcher) jsonPath("email").value(expectedEmail))
+            .andExpect((ResultMatcher) jsonPath("nome").value(expectedNome))
+            .andExpect((ResultMatcher) jsonPath("plano").value(expectedPlano))
+            .andExpect((ResultMatcher) jsonPath("senha").value(expectedSenha));
+    }
+    @Test
+    public void testCreateUsuarioPremium() throws Exception{
+        final String expectedEmail = "180131@facens.br";
+        final String expectedNome = "Victor Thadeu Santos Marciano";
+        final String expectedPlano = "PREMIUM";
+        final String expectedSenha = "1234";
+        mockMvc
+            .perform(MockMvcRequestBuilders.post("/usuarios").contentType(MediaType.APPLICATION_JSON).content("{\"email\":\"180131@facens.br\",\"nome\":\"Victor Thadeu Santos Marciano\",\"plano\":\"PREMIUM\",\"senha\":\"1234\"}"))
             .andExpect(MockMvcResultMatchers.status().is(201))
             .andExpect((ResultMatcher) jsonPath("email").value(expectedEmail))
             .andExpect((ResultMatcher) jsonPath("nome").value(expectedNome))
