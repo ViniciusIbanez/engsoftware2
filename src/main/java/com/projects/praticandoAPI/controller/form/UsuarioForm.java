@@ -1,9 +1,6 @@
 package com.projects.praticandoAPI.controller.form;
 
-import com.projects.praticandoAPI.modelo.Curso;
-import com.projects.praticandoAPI.modelo.Topico;
 import com.projects.praticandoAPI.modelo.Usuario;
-import com.projects.praticandoAPI.repository.CursoRepository;
 import com.projects.praticandoAPI.repository.UsuarioRepository;
 
 public class UsuarioForm {
