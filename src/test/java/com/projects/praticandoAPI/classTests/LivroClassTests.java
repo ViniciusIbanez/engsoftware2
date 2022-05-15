@@ -1,10 +1,9 @@
-package com.projects.praticandoAPI;
+package com.projects.praticandoAPI.classTests;
 
+import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import com.projects.praticandoAPI.modelo.Livro;
-
-import org.junit.Test;
 
 public class LivroClassTests {
     @Test

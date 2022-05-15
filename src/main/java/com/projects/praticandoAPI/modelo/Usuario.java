@@ -14,9 +14,12 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private String plano;
+	private Long moedas;
 
 	public Usuario() {
 	}
+
+
 
 	/**
 	 * Cria um novo objeto de usuário com suas informações preenchidas
@@ -38,6 +41,7 @@ public class Usuario {
 			plano = "FREE";
 		}
 		this.plano = plano;
+		this.setMoedas(this.plano);
 	}
 	
 	@Override
@@ -111,5 +115,41 @@ public class Usuario {
 		public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
+	public Long getMoedas() {
+		return moedas;
+	}
+
+	public void setMoedas(String plano){
+		switch (this.plano) {
+			case "FREE":
+				this.moedas = (long) 0;
+				break;
+			case "PREMIUM":
+				this.moedas = (long) 10;
+				break;
+			case "VIP":
+				this.moedas = (long) 100;
+				break;
+		
+			default:
+				this.moedas = (long) 0;
+				break;
+		}
+	}
+
+	public void setMoedas(String operacao, long valor){
+		switch (operacao) {
+			case "add":
+				this.moedas += valor;
+				break;
+			case "remove":
+				if ((long)(this.moedas -= valor) >= 0){
+					this.moedas -= valor;
+				}
+				break;
+			default:
+				break;
+		}
+	}
 }
