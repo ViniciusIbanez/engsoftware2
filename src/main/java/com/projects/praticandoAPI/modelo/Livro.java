@@ -1,9 +1,12 @@
 package com.projects.praticandoAPI.modelo;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Livro {
@@ -12,6 +15,9 @@ public class Livro {
 	private Long id;
     private String titulo;
     private String autor;
+
+	@ManyToMany(mappedBy = "livros")
+	Set<Biblioteca> bibliotecas;
 
 	/**
 	 * Cria uma classe livro vazia
@@ -81,4 +87,11 @@ public class Livro {
         return relalidadeAumentadaMock+this.getTitulo();
     }
 
+	public void addBiblioteca(Biblioteca biblioteca){
+		this.bibliotecas.add(biblioteca);
+	}
+
+	public Set<Biblioteca> getBibliotecas(){
+		return this.bibliotecas;
+	}
 }

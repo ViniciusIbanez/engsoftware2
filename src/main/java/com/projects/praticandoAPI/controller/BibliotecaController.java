@@ -4,9 +4,11 @@ import java.net.URI;
 import java.util.List;
 
 import com.projects.praticandoAPI.controller.dto.BibliotecaDto;
+import com.projects.praticandoAPI.controller.form.AddLivroForm;
 import com.projects.praticandoAPI.controller.form.BibliotecaForm;
 import com.projects.praticandoAPI.modelo.Biblioteca;
 import com.projects.praticandoAPI.repository.BibliotecaRepository;
+import com.projects.praticandoAPI.repository.LivroRepository;
 import com.projects.praticandoAPI.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class BibliotecaController {
     private BibliotecaRepository bibliotecaRepository;
     @Autowired
 	private UsuarioRepository usuarioRepository;
+    @Autowired
+    private LivroRepository livroRepository;
 
     @GetMapping
     public List<BibliotecaDto> lista() {
@@ -39,6 +43,15 @@ public class BibliotecaController {
         Biblioteca biblioteca = form.converter(usuarioRepository);
         bibliotecaRepository.save(biblioteca);
 
+        URI uri = uriBuilder.path("/bibliotecas/{id}").buildAndExpand(biblioteca.getId()).toUri();
+        return ResponseEntity.created(uri).body(new BibliotecaDto(biblioteca));
+    }
+
+    @PostMapping(path = "/addLivro")
+    public ResponseEntity<BibliotecaDto> adicionarLivro(@RequestBody AddLivroForm form, UriComponentsBuilder uriBuilder){
+        Biblioteca biblioteca = form.converter(livroRepository, bibliotecaRepository);
+        bibliotecaRepository.save(biblioteca);
+        
         URI uri = uriBuilder.path("/bibliotecas/{id}").buildAndExpand(biblioteca.getId()).toUri();
         return ResponseEntity.created(uri).body(new BibliotecaDto(biblioteca));
     }

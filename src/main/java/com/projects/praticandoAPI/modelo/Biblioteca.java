@@ -1,9 +1,13 @@
 package com.projects.praticandoAPI.modelo;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
@@ -17,6 +21,14 @@ public class Biblioteca {
     @MapsId
     @JoinColumn(name= "usuario_id")
     private Usuario usuario;
+
+    @ManyToMany
+    @JoinTable(
+        name = "livro_biblioteca",
+        joinColumns = @JoinColumn(name = "biblioteca_id"),
+        inverseJoinColumns = @JoinColumn(name = "livro_id")
+    )
+    Set<Livro> livros;
 
     public Biblioteca(){
     }
@@ -59,4 +71,14 @@ public class Biblioteca {
     public Usuario getUsuario(){
         return this.usuario; 
     }
+
+    public void addLivro(Livro livro){
+        livro.addBiblioteca(this);
+        this.livros.add(livro);
+    }
+
+
+    public Set<Livro> getLivros(){
+        return this.livros;
+    } 
 }
