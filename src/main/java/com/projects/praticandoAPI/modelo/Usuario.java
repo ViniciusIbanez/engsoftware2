@@ -1,22 +1,45 @@
 package com.projects.praticandoAPI.modelo;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Usuario {
 	
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
+	
 	private String nome;
 	private String email;
 	private String senha;
 	private String plano;
 	private Long moedas;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Biblioteca biblioteca;
+
 	public Usuario() {
+	}
+
+
+
+	public Biblioteca getBiblioteca() {
+		return biblioteca;
+	}
+
+
+
+	public void setBiblioteca(Biblioteca biblioteca) {
+		this.biblioteca = biblioteca;
 	}
 
 
