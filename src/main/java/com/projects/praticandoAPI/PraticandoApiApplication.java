@@ -23,7 +23,7 @@ public class PraticandoApiApplication  {
 	@ResponseBody
 	String home()
 	{
-		return "Mutiple pom";
+		return "Automated Deploy";
 		}
 	
 	
