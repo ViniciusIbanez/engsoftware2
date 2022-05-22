@@ -13,7 +13,6 @@ public class UsuarioClassTests {
         final String expectedNome = "Victor Thadeu Santos Marciano";
         final String expectedPlano = "FREE";
         final String expectedSenha = "1234";
-        final Long expctedMoedas = (long) 0;
         final String givenEmail = "180131@facens.br";
         final String givenNome = "Victor Thadeu Santos Marciano";
         final String givenPlano = "FREE";
